@@ -147,6 +147,9 @@ class Instructor extends Lambdasian {
   grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`
   }
+  plusMinusGrade(student){
+    student.grade = Math.floor(Math.random() * (100 - 0 + 1)) + 0;
+  }
 }
 /*
   TASK 5
@@ -169,6 +172,7 @@ class Student extends Lambdasian {
     this.previousBackground = atr.previousBackground;
     this.className = atr.className;
     this.favSubjects = atr.favSubjects;
+    this.grade = atr.grade
   }
   listSubjects(){
     return `Loving ${this.favSubjects.join(', ')}`;
@@ -179,7 +183,13 @@ class Student extends Lambdasian {
   sprintChallenge(subject){
     return `${this.name} has begun sprint challenge on ${subject}`;
   }
-   
+  readyToGraduate(){
+    if(this.grade >= 70){
+      return `${this.name} is ready to graduate bloomtech`;
+    } else {
+      return 'Not quite yet...'
+    }
+  }
 }
 
 /*
@@ -217,6 +227,29 @@ class ProjectManager extends Instructor{
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
 
+const tim = new Student({
+  name: 'Tim',
+  age: '25',
+  location: 'USA',
+  previousBackground: 'retail',
+  className: 'web52',
+  favSubjects: ['Java Script', 'HTML', 'CSS'],
+  grade: 70 
+})
+
+const britt = new Instructor({
+  name: 'Britt',
+  age: '32',
+  location: 'USA',
+  specialty: 'Intro to JavaScript',
+  favLanguage: 'JavaScript',
+  catchPhrase: "Let's keep it professional guys"
+})
+
+britt.plusMinusGrade(tim);
+console.log(tim.readyToGraduate());
+console.log(tim.grade);
+console.log(britt.catchPhrase);
 
 //End of Challenge
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
